@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sw-cache-monbus-0';
+var CACHE_NAME = 'sw-cache-monbus-1';
 
 var urlsToCache = [
 	'https://iagolast.github.io/monbus/',
