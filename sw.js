@@ -1,11 +1,11 @@
 var CACHE_NAME = 'sw-cache-monbus-' + (self.registration ? self.registration.scope : '');
 
 var urlsToCache = [
-	'/',
-	'/index.html',
-	'/manifest.json',
-	'/stations.json',
-	'scripts/app.js',
+	'https://iagolast.github.io/',
+	'https://iagolast.github.io/index.html',
+	'https://iagolast.github.io/manifest.json',
+	'https://iagolast.github.io/stations.json',
+	'https://iagolast.github.io/scripts/app.js',
 ];
 
 self.addEventListener('install', function(event) {
