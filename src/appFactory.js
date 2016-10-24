@@ -6,11 +6,16 @@ function AppFactory(serverUrl) {
 	let stationsData;
 	let stationsArray;
 
+	const fromInputSelector = 'input[name="from"]';
+	const toInputSelector = 'input[name="to"]';
+	const dateInputSelector = 'input[name="date"]';
+	const searchBtnSelector = 'input[value="Buscar autobuses"]';
+
 	function init() {
 		stationsData = {};
 		stationsArray = [];
-		document.querySelector('input[name="date"').valueAsDate = new Date();
-		document.querySelector('input[type="button"').addEventListener('click', _onBtnSearchClick);
+		document.querySelector(dateInputSelector).valueAsDate = new Date();
+		document.querySelector(searchBtnSelector).addEventListener('click', _onBtnSearchClick);
 
 		if ('serviceWorker' in navigator) {
 			navigator.serviceWorker.register('service-worker.js');
@@ -27,8 +32,8 @@ function AppFactory(serverUrl) {
 			stationsData[element.name] = element.id;
 		});
 
-		_newAutocomplete('input[name="from"]');
-		_newAutocomplete('input[name="to"]');
+		_newAutocomplete(fromInputSelector);
+		_newAutocomplete(toInputSelector);
 	}
 
 	function _newAutocomplete(selector) {
@@ -49,9 +54,9 @@ function AppFactory(serverUrl) {
 	}
 
 	function _onBtnSearchClick() {
-		let from = stationsData[document.querySelector('input[name="from"').value];
-		let to = stationsData[document.querySelector('input[name="to"').value];
-		let date = document.querySelector('input[name="date"').value;
+		let from = stationsData[document.querySelector(fromInputSelector).value];
+		let to = stationsData[document.querySelector(toInputSelector).value];
+		let date = document.querySelector(dateInputSelector).value;
 
 		if (!from || !to || !date) {
 			return;
@@ -88,7 +93,7 @@ function AppFactory(serverUrl) {
 	}
 
 	function _changeVisibleElements(button, spinner, error) {
-		document.querySelector('input[type="button"').style.display = button;
+		document.querySelector(searchBtnSelector).style.display = button;
 		document.querySelector('.spinner').style.display = spinner;
 		document.querySelector('.error-msg').style.display = error;
 	}

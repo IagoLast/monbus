@@ -492,11 +492,16 @@ function AppFactory(serverUrl) {
 	var stationsData = void 0;
 	var stationsArray = void 0;
 
+	var fromInputSelector = 'input[name="from"]';
+	var toInputSelector = 'input[name="to"]';
+	var dateInputSelector = 'input[name="date"]';
+	var searchBtnSelector = 'input[value="Buscar autobuses"]';
+
 	function init() {
 		stationsData = {};
 		stationsArray = [];
-		document.querySelector('input[name="date"').valueAsDate = new Date();
-		document.querySelector('input[type="button"').addEventListener('click', _onBtnSearchClick);
+		document.querySelector(dateInputSelector).valueAsDate = new Date();
+		document.querySelector(searchBtnSelector).addEventListener('click', _onBtnSearchClick);
 
 		if ('serviceWorker' in navigator) {
 			navigator.serviceWorker.register('service-worker.js');
@@ -513,8 +518,8 @@ function AppFactory(serverUrl) {
 			stationsData[element.name] = element.id;
 		});
 
-		_newAutocomplete('input[name="from"]');
-		_newAutocomplete('input[name="to"]');
+		_newAutocomplete(fromInputSelector);
+		_newAutocomplete(toInputSelector);
 	}
 
 	function _newAutocomplete(selector) {
@@ -535,9 +540,9 @@ function AppFactory(serverUrl) {
 	}
 
 	function _onBtnSearchClick() {
-		var from = stationsData[document.querySelector('input[name="from"').value];
-		var to = stationsData[document.querySelector('input[name="to"').value];
-		var date = document.querySelector('input[name="date"').value;
+		var from = stationsData[document.querySelector(fromInputSelector).value];
+		var to = stationsData[document.querySelector(toInputSelector).value];
+		var date = document.querySelector(dateInputSelector).value;
 
 		if (!from || !to || !date) {
 			return;
@@ -573,7 +578,7 @@ function AppFactory(serverUrl) {
 	}
 
 	function _changeVisibleElements(button, spinner, error) {
-		document.querySelector('input[type="button"').style.display = button;
+		document.querySelector(searchBtnSelector).style.display = button;
 		document.querySelector('.spinner').style.display = spinner;
 		document.querySelector('.error-msg').style.display = error;
 	}
