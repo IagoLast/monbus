@@ -499,7 +499,7 @@ function AppFactory(serverUrl) {
 		document.querySelector('input[type="button"').addEventListener('click', _onBtnSearchClick);
 
 		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('sw.js');
+			navigator.serviceWorker.register('service-worker.js');
 		}
 
 		fetch('stations.json', { method: 'get' }).then(function (response) {
