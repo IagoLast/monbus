@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sw-cache-monbus-' + (self.registration ? self.registration.scope : '');
+var CACHE_NAME = 'sw-cache-monbus-0';
 
 var urlsToCache = [
 	'https://iagolast.github.io/monbus/',
