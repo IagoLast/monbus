@@ -1,0 +1,14 @@
+{
+	"name": "Horarios Monbus",
+	"short_name": "Monbus",
+	"icons": [{
+		"src": "bus.png",
+		"type": "image/png",
+		"sizes": "72x72 96x96 128x128 256x256"
+	}],
+	"theme_color": "#26a69a",
+	"background_color": "#fff",
+	"start_url": "index.html",
+	"display": "fullscreen",
+	"orientation": "portrait"
+}
