@@ -422,23 +422,23 @@ var hasEventListeners = !!window.addEventListener,
 
 			if (self.isVisible()) {
 				switch (e.keyCode) {
-					case 13:
-					case 27:
-						opts.field.blur();
-						break;
-					case 37:
-						e.preventDefault();
-						self.adjustDate('subtract', 1);
-						break;
-					case 38:
-						self.adjustDate('subtract', 7);
-						break;
-					case 39:
-						self.adjustDate('add', 1);
-						break;
-					case 40:
-						self.adjustDate('add', 7);
-						break;
+				case 13:
+				case 27:
+					opts.field.blur();
+					break;
+				case 37:
+					e.preventDefault();
+					self.adjustDate('subtract', 1);
+					break;
+				case 38:
+					self.adjustDate('subtract', 7);
+					break;
+				case 39:
+					self.adjustDate('add', 1);
+					break;
+				case 40:
+					self.adjustDate('add', 7);
+					break;
 				}
 			}
 		};

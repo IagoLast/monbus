@@ -1517,7 +1517,7 @@ Pikaday.prototype = {
 
 };
 
-function AppFactory(serverUrl) {
+function AppFactory(serverUrl, stations) {
 	var App = { init: init };
 	var stationsData = void 0;
 	var stationsArray = void 0;
@@ -1528,18 +1528,18 @@ function AppFactory(serverUrl) {
 	var searchBtnSelector = 'input[value="Buscar autobuses"]';
 
 	function init() {
-		stationsData = {};
-		stationsArray = [];
-
 		var dateSelector = document.getElementById('datepicker');
 		new Pikaday({ field: dateSelector });
 		dateSelector.value = Pikaday.prototype.dateToString(new Date());
 
 		document.querySelector(searchBtnSelector).addEventListener('click', _onBtnSearchClick);
-		fetch('/stations.json').then(_populateSelects);
+		_populateSelects(stations);
 	}
 
 	function _populateSelects(stations) {
+		stationsData = {};
+		stationsArray = [];
+
 		stations.forEach(function (element) {
 			stationsArray.push(element.name);
 			stationsData[element.name] = element.id;
@@ -1611,11 +1611,13 @@ function AppFactory(serverUrl) {
 	return App;
 }
 
+var stations = [{ 'id': '10530', 'name': 'Pontevedra Estación de Autobuses' }, { 'id': '10572', 'name': 'Vigo Arenal' }, { 'id': '10533', 'name': 'Vigo Estación de Autobuses' }, { 'id': '11314', 'name': 'Vilagarcía de Arousa Estación de Autobuses' }, { 'id': '10559', 'name': 'Sanxenxo Estación de Autobuses' }, { 'id': '10960', 'name': 'Santiago de Compostela Estación de Autobuses' }, { 'id': '10981', 'name': 'Santiago de Compostela Avenida Rosalia de Castro' }, { 'id': '10932', 'name': 'A Coruña Estación de Autobuses' }];
+
 // if ('serviceWorker' in navigator) {
 // 	navigator.serviceWorker.register('service-worker.js');
 // }
 
-var app = AppFactory('https://monbus.herokuapp.com/');
+var app = AppFactory('https://monbus.herokuapp.com/', stations);
 app.init();
 
 }());

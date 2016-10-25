@@ -4,7 +4,7 @@ import fetch from './httpClient.js';
 import Pikaday from './datepicker.js';
 
 
-function AppFactory(serverUrl) {
+function AppFactory(serverUrl, stations) {
 	let App = { init };
 	let stationsData;
 	let stationsArray;
@@ -16,18 +16,18 @@ function AppFactory(serverUrl) {
 
 
 	function init() {
-		stationsData = {};
-		stationsArray = [];
-
 		let dateSelector = document.getElementById('datepicker');
 		new Pikaday({ field: dateSelector });
 		dateSelector.value = Pikaday.prototype.dateToString(new Date());
 
 		document.querySelector(searchBtnSelector).addEventListener('click', _onBtnSearchClick);
-		fetch('/stations.json').then(_populateSelects);
+		_populateSelects(stations);
 	}
 
 	function _populateSelects(stations) {
+		stationsData = {};
+		stationsArray = [];
+
 		stations.forEach((element) => {
 			stationsArray.push(element.name);
 			stationsData[element.name] = element.id;
