@@ -14,23 +14,21 @@ const uglify = require('gulp-uglify');
 gulp.task('default', ['dist']);
 
 
-
 gulp.task('dist', ['compress'], () => {
-	gulp.src('serve/index.html')
+	gulp.src('monbus/index.html')
 		.pipe(minifyInline())
 		.pipe(htmlmin({ collapseWhitespace: true }))
 		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('copy', ['js'], () => {
-	gulp.src('serve/bus.png').pipe(gulp.dest('./dist'));
-	gulp.src('serve/service-worker.js').pipe(gulp.dest('./dist'));
-	gulp.src('serve/stations.json').pipe(gulp.dest('./dist'));
-	gulp.src('serve/manifest.json').pipe(gulp.dest('./dist'));
+	gulp.src('monbus/bus.png').pipe(gulp.dest('./dist'));
+	gulp.src('monbus/service-worker.js').pipe(gulp.dest('./dist'));
+	gulp.src('monbus/manifest.json').pipe(gulp.dest('./dist'));
 });
 
 gulp.task('compress', ['copy'], () => {
-	gulp.src('serve/scripts/app.js')
+	gulp.src('monbus/scripts/app.js')
 		.pipe(uglify())
 		.pipe(gulp.dest('dist/scripts'));
 });
@@ -41,12 +39,12 @@ gulp.task('compress', ['copy'], () => {
 gulp.task('serve', ['js'], () => {
 	browserSync.init({
 		server: {
-			baseDir: './serve',
+			baseDir: './monbus',
 			// https: true
 		},
 	});
 	gulp.watch('src/**/*.js', ['reload']);
-	gulp.watch('serve/index.html', browserSync.reload);
+	gulp.watch('monbus/index.html', browserSync.reload);
 });
 
 gulp.task('js', ['js:compile', 'js:sw']);
@@ -66,9 +64,9 @@ gulp.task('reload', ['js'], (done) => {
 });
 
 gulp.task('js:sw', function(callback) {
-	let rootDir = './serve';
+	let rootDir = './monbus';
 	swPrecache.write(path.join(rootDir, 'service-worker.js'), {
 		staticFileGlobs: [rootDir + '/**/*.{js,html,css,json}'],
-		stripPrefix: rootDir
+		stripPrefix: '.'
 	}, callback);
 });

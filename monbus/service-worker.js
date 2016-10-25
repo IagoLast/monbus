@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/index.html","4fa69fc5b22f913f6c85f59e723fae14"],["/manifest.json","2701426e3e90f298a6c9f732e7d7149f"],["/scripts/app.js","a904357cba861fafcafd58185db10e89"],["/stations.json","4a92d5a9775225e5481751954c432239"]];
+var precacheConfig = [["/monbus/index.html","e1c659d1d8c38d0fc27543c14e8c0233"],["/monbus/manifest.json","2701426e3e90f298a6c9f732e7d7149f"],["/monbus/scripts/app.js","421c1874cd6af30fd60bd5012dfe7c05"]];
 var cacheName = 'sw-precache-v2--' + (self.registration ? self.registration.scope : '');
 
 

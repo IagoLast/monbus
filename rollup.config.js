@@ -4,7 +4,7 @@ import eslint from 'rollup-plugin-eslint';
 export default {
 	entry: 'src/app.js',
 	format: 'iife',
-	dest: 'serve/scripts/app.js',
+	dest: 'monbus/scripts/app.js',
 	plugins: [
 		eslint({
 			exclude: [

@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
 	<link rel="manifest" href="manifest.json">
-	<title>App</title>
+	<title>Horarios monbus</title>
 	<!-- Main critical styles -->
 	<style type="text/css">
 	body {
@@ -98,6 +98,16 @@
 		color: brown;
 		text-align: center;
 		display: none;
+	}
+
+	.gh {
+		text-align: center;
+		display: block;
+		text-decoration: none;
+		color: #2196F3;
+		font-family: helvetica;
+		font-weight: 100;
+		font-size: 1.1em;
 	}
 	</style>
 	<!-- Styles for the date selector -->
@@ -313,8 +323,10 @@
 			<circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
 		</svg>
 	</section>
+	<footer>
+		<a class="gh" href="https://github.com/IagoLast/monbus">@IagoLast</a>
+	</footer>
 	<script async src="scripts/app.js "></script>
-
 	<!-- Autocomplete styles -->
 	<style type="text/css">
 	.autocomplete-suggestions {
@@ -426,44 +438,9 @@
 		stroke-dashoffset: 0;
 		-webkit-transform-origin: center;
 		transform-origin: center;
-		-webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-		animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-	}
-
-	@-webkit-keyframes colors {
-		0% {
-			stroke: #4285F4;
-		}
-		25% {
-			stroke: #DE3E35;
-		}
-		50% {
-			stroke: #F7C223;
-		}
-		75% {
-			stroke: #1B9A59;
-		}
-		100% {
-			stroke: #4285F4;
-		}
-	}
-
-	@keyframes colors {
-		0% {
-			stroke: #4285F4;
-		}
-		25% {
-			stroke: #DE3E35;
-		}
-		50% {
-			stroke: #F7C223;
-		}
-		75% {
-			stroke: #1B9A59;
-		}
-		100% {
-			stroke: #4285F4;
-		}
+		-webkit-animation: dash 1.4s ease-in-out infinite;
+		animation: dash 1.4s ease-in-out infinite;
+		stroke: #26a69a;
 	}
 
 	@-webkit-keyframes dash {
