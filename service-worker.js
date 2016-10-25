@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["https://iagolast.github.io/monbus/index.html","4e8427c0dc0b14ee54a5f796833f8371"],["https://iagolast.github.io/monbus/manifest.json","2701426e3e90f298a6c9f732e7d7149f"],["https://iagolast.github.io/monbus/scripts/app.js","8bd2c5ffc26ea5034245dbd32c6701d1"],["https://iagolast.github.io/monbus/stations.json","4a92d5a9775225e5481751954c432239"]];
+var precacheConfig = [["/monbus/index.html","e1c659d1d8c38d0fc27543c14e8c0233"],["/monbus/manifest.json","2701426e3e90f298a6c9f732e7d7149f"],["/monbus/scripts/app.js","421c1874cd6af30fd60bd5012dfe7c05"]];
 var cacheName = 'sw-precache-v2--' + (self.registration ? self.registration.scope : '');
 
 
@@ -140,10 +140,10 @@ self.addEventListener('install', function(event) {
         );
       });
     }).then(function() {
-
+      
       // Force the SW to transition from installing -> active state
       return self.skipWaiting();
-
+      
     })
   );
 });
@@ -163,9 +163,9 @@ self.addEventListener('activate', function(event) {
         );
       });
     }).then(function() {
-
+      
       return self.clients.claim();
-
+      
     })
   );
 });
