@@ -1,5 +1,8 @@
 import buildTable from './tableBuilder.js';
 import autoComplete from './autocomplete.js';
+import fetch from './httpClient.js';
+import Pikaday from './datepicker.js';
+
 
 function AppFactory(serverUrl) {
 	let App = { init };
@@ -8,22 +11,20 @@ function AppFactory(serverUrl) {
 
 	const fromInputSelector = 'input[name="from"]';
 	const toInputSelector = 'input[name="to"]';
-	const dateInputSelector = 'input[name="date"]';
+	const dateInputSelector = '#datepicker';
 	const searchBtnSelector = 'input[value="Buscar autobuses"]';
+
 
 	function init() {
 		stationsData = {};
 		stationsArray = [];
-		document.querySelector(dateInputSelector).valueAsDate = new Date();
+
+		let dateSelector = document.getElementById('datepicker');
+		new Pikaday({ field: dateSelector });
+		dateSelector.value = Pikaday.prototype.dateToString(new Date());
+
 		document.querySelector(searchBtnSelector).addEventListener('click', _onBtnSearchClick);
-
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('service-worker.js');
-		}
-
-		fetch('stations.json', { method: 'get' })
-			.then((response) => response.json())
-			.then(_populateSelects);
+		fetch('/stations.json').then(_populateSelects);
 	}
 
 	function _populateSelects(stations) {
@@ -65,10 +66,7 @@ function AppFactory(serverUrl) {
 		_deleteOldTable();
 		_changeVisibleElements('none', 'block', 'none');
 
-		fetch(`${serverUrl}${from}/${to}/${date}`, { method: 'get' })
-			.then((response) => response.json())
-			.then(_onResponse)
-			.catch(_onError);
+		fetch(`${serverUrl}${from}/${to}/${date}`).then(_onResponse).catch(_onError);
 	}
 
 	function _onResponse(response) {
@@ -86,7 +84,7 @@ function AppFactory(serverUrl) {
 	}
 
 	function _deleteOldTable() {
-		let table = document.querySelector('table');
+		let table = document.querySelector('.timetable');
 		if (table) {
 			document.querySelector('section').removeChild(table);
 		}

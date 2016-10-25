@@ -14,6 +14,7 @@ function buildTable(headers, data) {
 
 	table.appendChild(head);
 	table.appendChild(body);
+	table.classList.add('timetable');
 
 	return table;
 }
